@@ -10,10 +10,11 @@ def search():
         return jsonify({"error": "No query provided"}), 400
     try:
         ydl_opts = {
-            "format": "bestaudio/best",
-            "quiet": True,
-            "noplaylist": True,
-        }
+             "format": "bestaudio/best",
+             "quiet": True,
+             "noplaylist": True,
+             "cookiefile": "cookies.txt"}
+        
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(f"ytsearch1:{query}", download=False)["entries"][0]
             return jsonify({
